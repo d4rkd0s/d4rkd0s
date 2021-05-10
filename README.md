@@ -3,7 +3,7 @@
 
 <p align="left"> <a href="https://twitter.com/d4rkd0s" target="blank"><img src="https://img.shields.io/twitter/follow/d4rkd0s?logo=twitter&style=for-the-badge" alt="d4rkd0s" /></a> </p>
 
-- 🔭 I’m currently working on [SportsRecruits](https://github.com/sportsrecruits)
+- 🔭 I’m currently working at [SportsRecruits](https://github.com/sportsrecruits)
 
 - 🌱 I’m currently learning **Steamworks SDK**
 
