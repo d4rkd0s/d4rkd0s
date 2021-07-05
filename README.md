@@ -1,4 +1,4 @@
-<h1 align="center">Hi 👋, I'm Logan Schmidt (d4rkd0s)</h1>
+<h1 align="center">Hi 👋, I'm @d4rkd0s (Logan Schmidt)</h1>
 <h3 align="center">Cloud Engineer ☁️, Try-hard Gamer 🎮, Husband to <a href="https://linktr.ee/m3gm3g">@m3gm3g</a> 💕, Dad of <a href="http://frrbee.com/">@frrbee</a> 🐕, Pilot for fun 🛩️</h3>
 
 <p align="left"> <a href="https://twitter.com/d4rkd0s" target="blank"><img src="https://img.shields.io/twitter/follow/d4rkd0s?logo=twitter&style=for-the-badge" alt="d4rkd0s" /></a> </p>
