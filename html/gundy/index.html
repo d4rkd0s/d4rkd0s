@@ -1,0 +1,423 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Gundy</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/gundy/apple-touch-icon.png?v=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="/gundy/favicon-32x32.png?v=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="/gundy/favicon-16x16.png?v=1">
+    <link rel="manifest" href="/gundy/site.webmanifest?v=1">
+    <link rel="mask-icon" href="/gundy/safari-pinned-tab.svg?v=1" color="#000000">
+    <link rel="shortcut icon" href="/gundy/favicon.ico?v=1">
+    <meta name="apple-mobile-web-app-title" content="Gundy">
+    <meta name="application-name" content="Gundy">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-config" content="/gundy/browserconfig.xml?v=1">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        html,
+        body {
+            background-color: black;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            min-height: 100%;
+        }
+
+        #logo {
+            display: block;
+            height: 100px;
+            padding-top: 36px;
+            margin: 0 auto;
+        }
+
+        #steam {
+            display: block;
+            margin: 0 auto;
+        }
+
+        body {
+            font-family: "Quicksand", sans-serif;
+            font-weight: 500;
+            color: #424949;
+            background-color: black;
+            padding: 0 25px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            height: 38px;
+            margin: 60px 0;
+        }
+
+        h1 span {
+            white-space: nowrap;
+        }
+
+        .flex-parent {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+        }
+
+        .input-flex-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 80vw;
+            max-width: 1000px;
+            position: relative;
+            z-index: 0;
+            margin-left: calc((80vw - 25px) / 20);
+        }
+
+        input {
+            width: 25px;
+            height: 25px;
+            background-color: #2C3E50;
+            position: relative;
+            border-radius: 50%;
+            display: block;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        input::before,
+        input::after {
+            content: "";
+            display: block;
+            position: absolute;
+            z-index: -1;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #2C3E50;
+            width: 4vw;
+            height: 5px;
+            max-width: 50px;
+        }
+
+        input::before {
+            left: calc(-4vw + 12.5px);
+        }
+
+        input::after {
+            right: calc(-4vw + 12.5px);
+        }
+
+        input:checked {
+            background-color: #2C3E50;
+        }
+
+        input:checked::before {
+            background-color: #2C3E50;
+        }
+
+        input:checked::after {
+            background-color: #AEB6BF;
+        }
+
+        input:checked~input,
+        input:checked~input::before,
+        input:checked~input::after {
+            background-color: #AEB6BF;
+        }
+
+        input:checked+.dot-info span {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .dot-info {
+            width: 25px;
+            height: 25px;
+            display: block;
+            visibility: hidden;
+            position: relative;
+            z-index: -1;
+            left: calc((((80vw - 25px) / 20) * -1) - 1px);
+        }
+
+        .dot-info span {
+            visibility: visible;
+            position: absolute;
+            font-size: 12px;
+        }
+
+        .dot-info span.year {
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .dot-info span.label {
+            top: -65px;
+            left: 0;
+            transform: rotateZ(-45deg);
+            width: 70px;
+            text-indent: -10px;
+        }
+
+        #timeline-descriptions-wrapper {
+            width: 100%;
+            margin-top: 140px;
+            font-size: 22px;
+            font-weight: 400;
+            margin-left: calc((-80vw - 25px) / 20);
+        }
+
+        #timeline-descriptions-wrapper p {
+            margin-top: 0;
+            display: none;
+        }
+
+        input[data-description="1910"]:checked~#timeline-descriptions-wrapper p[data-description="1910"] {
+            display: block;
+        }
+
+        input[data-description="1920"]:checked~#timeline-descriptions-wrapper p[data-description="1920"] {
+            display: block;
+        }
+
+        input[data-description="1930"]:checked~#timeline-descriptions-wrapper p[data-description="1930"] {
+            display: block;
+        }
+
+        input[data-description="1940"]:checked~#timeline-descriptions-wrapper p[data-description="1940"] {
+            display: block;
+        }
+
+        input[data-description="1950"]:checked~#timeline-descriptions-wrapper p[data-description="1950"] {
+            display: block;
+        }
+
+        input[data-description="1960"]:checked~#timeline-descriptions-wrapper p[data-description="1960"] {
+            display: block;
+        }
+
+        input[data-description="1970"]:checked~#timeline-descriptions-wrapper p[data-description="1970"] {
+            display: block;
+        }
+
+        input[data-description="1980"]:checked~#timeline-descriptions-wrapper p[data-description="1980"] {
+            display: block;
+        }
+
+        input[data-description="1990"]:checked~#timeline-descriptions-wrapper p[data-description="1990"] {
+            display: block;
+        }
+
+        input[data-description="2000"]:checked~#timeline-descriptions-wrapper p[data-description="2000"] {
+            display: block;
+        }
+
+        @media (min-width: 1250px) {
+            .input-flex-container {
+                margin-left: 62.5px;
+            }
+
+            input::before {
+                left: -37.5px;
+            }
+
+            input::after {
+                right: -37.5px;
+            }
+
+            .dot-info {
+                left: calc((((1000px - 25px) / 20) * -1) - 1px);
+            }
+
+            #timeline-descriptions-wrapper {
+                margin-left: -37.5px;
+            }
+        }
+
+        @media (max-width: 630px) {
+            .flex-parent {
+                justify-content: initial;
+            }
+
+            .input-flex-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 400px;
+                height: auto;
+                margin-top: 15vh;
+                margin-left: 0;
+                padding-bottom: 30px;
+            }
+
+            input,
+            .dot-info {
+                width: 60px;
+                height: 60px;
+                margin: 0 10px 50px;
+            }
+
+            input {
+                background-color: transparent !important;
+                z-index: 1;
+            }
+
+            input::before,
+            input::after {
+                content: none;
+            }
+
+            input:checked+.dot-info {
+                background-color: #2C3E50;
+            }
+
+            input:checked+.dot-info span.year {
+                font-size: 14px;
+            }
+
+            input:checked+.dot-info span.label {
+                font-size: 12px;
+            }
+
+            .dot-info {
+                visibility: visible;
+                border-radius: 50%;
+                z-index: 0;
+                left: 0;
+                margin-left: -70px;
+                background-color: #AEB6BF;
+            }
+
+            .dot-info span.year {
+                top: 0;
+                left: 0;
+                transform: none;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #ECF0F1;
+            }
+
+            .dot-info span.label {
+                top: calc(100% + 5px);
+                left: 50%;
+                transform: translateX(-50%);
+                text-indent: 0;
+                text-align: center;
+            }
+
+            #timeline-descriptions-wrapper {
+                margin-top: 30px;
+                margin-left: 0;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .input-flex-container {
+                width: 340px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .input-flex-container {
+                width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <br><br><br>
+    <img id="logo" src="/gundy/logo.png" alt="the Gundy logo shown in pixel font">
+    <br>
+    <iframe id="steam"
+        src="https://store.steampowered.com/widget/941640/?t=Welcome%20to%20Gundy%2C%20a%20short%20and%20sweet%202D%20platformer%20made%20by%20d4rkd0s.%0AYour%20mission%20as%20Gundy%20is%20to%20find%20a%20weapon%2C%20eliminate%20the%20enemy%20snakes%20along%20your%20path.Try%20to%20find%20access%20to%20the%20boss%20room.%20Once%20you%20enter%20the%20room%20prepare%20for%20a%20difficult%20fight%2C%20only%20those%20with%20true%20skill%20will%20win!"
+        frameborder="0" width="646" height="190"></iframe>
+    <br>
+    <!-- <h1>Gundy Roadmap</h1>
+    <div class="flex-parent">
+        <div class="input-flex-container">
+            <input type="radio" name="timeline-dot" data-description="1910">
+            <div class="dot-info" data-description="1910">
+                <span class="year">1910</span>
+                <span class="label">headset</span>
+            </div>
+            <input type="radio" name="timeline-dot" data-description="1920">
+            <div class="dot-info" data-description="1920">
+                <span class="year">1920</span>
+                <span class="label">jungle gym</span>
+            </div>
+            <input type="radio" name="timeline-dot" data-description="1930" checked>
+            <div class="dot-info" data-description="1930">
+                <span class="year">1930</span>
+                <span class="label">chocolate chip cookie</span>
+            </div>
+            <input type="radio" name="timeline-dot" data-description="1940">
+            <div class="dot-info" data-description="1940">
+                <span class="year">1940</span>
+                <span class="label">Jeep</span>
+            </div>
+            <input type="radio" name="timeline-dot" data-description="1950">
+            <div class="dot-info" data-description="1950">
+                <span class="year">1950</span>
+                <span class="label">leaf blower</span>
+            </div>
+            <input type="radio" name="timeline-dot" data-description="1960">
+            <div class="dot-info" data-description="1960">
+                <span class="year">1960</span>
+                <span class="label">magnetic stripe card</span>
+            </div>
+            <input type="radio" name="timeline-dot" data-description="1970">
+            <div class="dot-info" data-description="1970">
+                <span class="year">1970</span>
+                <span class="label">wireless LAN</span>
+            </div>
+            <input type="radio" name="timeline-dot" data-description="1980">
+            <div class="dot-info" data-description="1980">
+                <span class="year">1980</span>
+                <span class="label">flash memory</span>
+            </div>
+            <input type="radio" name="timeline-dot" data-description="1990">
+            <div class="dot-info" data-description="1990">
+                <span class="year">1990</span>
+                <span class="label">World Wide Web</span>
+            </div>
+            <input type="radio" name="timeline-dot" data-description="2000">
+            <div class="dot-info" data-description="2000">
+                <span class="year">2000</span>
+                <span class="label">Google AdWords</span>
+            </div>
+            <div id="timeline-descriptions-wrapper">
+                <p data-description="1910">And future Call of Duty players would thank them.</p>
+                <p data-description="1920">Because every kid should get to be Tarzan for a day.</p>
+                <p data-description="1930">And the world rejoiced.</p>
+                <p data-description="1940">Because building roads is inconvenient.</p>
+                <p data-description="1950">Ain’t nobody got time to rake.</p>
+                <p data-description="1960">Because paper currency is for noobs.</p>
+                <p data-description="1970">Nobody likes cords. Nobody.</p>
+                <p data-description="1980">Brighter than glow memory.</p>
+                <p data-description="1990">To capitalize on an as-yet nascent market for cat photos.</p>
+                <p data-description="2000">Because organic search rankings take work.</p>
+            </div>
+        </div>
+    </div> -->
+</body>
+</html>
