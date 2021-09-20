@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm @d4rkd0s (Logan Schmidt)</h1>
-<h3 align="center">Cloud Engineer ☁️, Try-hard Gamer 🎮, Husband to <a href="https://linktr.ee/m3gm3g">@m3gm3g</a> 💕, Dad of <a href="http://frrbee.com/">@frrbee</a> 🐕, Pilot for fun 🛩️</h3>
+<h3 align="center">Cloud Engineer ☁️ Try-hard Gamer 🎮 Husband to <a href="https://linktr.ee/m3gm3g">@m3gm3g</a> 💕 Dad of <a href="http://frrbee.com/">@frrbee</a> 🐕 Pilot for fun 🛩️</h3>
 
 <a href="https://twitter.com/d4rkd0s?ref_src=github.com" class="twitter-follow-button" data-show-count="false">Follow @d4rkd0s on Twitter</a>
 
