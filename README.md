@@ -7,6 +7,8 @@
 
 - 🦩 I own/operate [Mingos.io](https://www.mingos.io/)
 
+- 🐶 I co-own/operate (w/<a href="https://linktr.ee/m3gm3g">@m3gm3g</a>) [Putoputo.com](https://www.putoputo.com/)
+
 - 🌱 I’m currently learning <a href="https://partner.steamgames.com/doc/sdk/api#steam_game_servers">Steamworks SDK</a> and developing games in <a href="https://godotengine.org/">Godot</a>. 
 
     - My first game <a href="https://www.d4rkd0s.com/gundy/">Gundy</a> is <a href="https://store.steampowered.com/app/941640/Gundy/">available on Steam<a> for **free**!
