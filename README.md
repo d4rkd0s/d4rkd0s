@@ -13,7 +13,7 @@
 
     - My first game <a href="https://www.d4rkd0s.com/gundy/">Gundy</a> is <a href="https://store.steampowered.com/app/941640/Gundy/">available on Steam<a> for **free**!
     
-    - My second game <a href="https://www.d4rkd0s.com/gundy/">Fish & Bubbles</a> is <a href="https://store.steampowered.com/app/960070/Fish__Bubbles/">available on Steam<a> for **$4.99**!
+    - My second game <a href="https://www.d4rkd0s.com/fishandbubbles/">Fish & Bubbles</a> is <a href="https://store.steampowered.com/app/960070/Fish__Bubbles/">available on Steam<a> for **$4.99**!
 
 - 📫 Contact me at <a href="mailto:d4rkd0s@gmail.com">d4rkd0s@gmail.com</a>
 
