@@ -5,7 +5,7 @@
 
 - 🔭 I’m currently working at [SportsRecruits](https://github.com/sportsrecruits)
 
-- 🦩 I own/operate [Mingos.io](https://www.mingos.io/)
+- 🦩 I own/operate [Mingos.gg](https://www.mingos.gg/)
 
 - 🌱 I’m currently learning <a href="https://partner.steamgames.com/doc/sdk/api#steam_game_servers">Steamworks SDK</a> and developing games in <a href="https://godotengine.org/">Godot</a>. 
 
