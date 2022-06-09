@@ -16,6 +16,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georama&display=swap" rel="stylesheet">
     <style>
+    	* {
+	  /* Keyword value */
+	  user-select: none;
+	  /* Mozilla-specific value */
+	  -moz-user-select: none;
+	  /* WebKit-specific value */
+	  -webkit-user-select: none;
+	  /* Microsoft-specific value */
+	  -ms-user-select: none;
+	}
         html {
             -moz-box-shadow:    inset 0 0 2px #222;
             -webkit-box-shadow: inset 0 0 2px #222;
@@ -23,6 +33,7 @@
             background: #222;
             font-family: 'Georama', sans-serif;
             color: white;
+		
         }
         body {
             overflow: hidden;
