@@ -23,14 +23,6 @@
             background: #222;
             font-family: 'Georama', sans-serif;
             color: white;
-            /* Keyword value */
-            user-select: none;
-            /* Mozilla-specific value */
-            -moz-user-select: none;
-            /* WebKit-specific value */
-            -webkit-user-select: none;
-            /* Microsoft-specific value */
-            -ms-user-select: none;
         }
         body {
             overflow: hidden;
@@ -44,14 +36,10 @@
             text-align: center;
             display: block;
             font-family: 'Georama', sans-serif;
-            /* Keyword value */
-            user-select: none;
-            /* Mozilla-specific value */
-            -moz-user-select: none;
-            /* WebKit-specific value */
-            -webkit-user-select: none;
-            /* Microsoft-specific value */
-            -ms-user-select: none;
+	  -webkit-user-select: none;
+     -moz-user-select: -moz-none;
+      -ms-user-select: none;
+          user-select: none;
         }
         @keyframes float {
             0% {
