@@ -4,6 +4,7 @@
   "description": "<h1 align=\"center\">Hi 👋, I'm @d4rkd0s (Logan Schmidt)</h1> <h3 align=\"center\">Cloud Engineer ☁️, Try-hard Gamer 🎮, Husband to <a href=\"https://linktr.ee/m3gm3g\">@m3gm3g</a> 💕, Dad of <a href=\"http://frrbee.com/\">@frrbee</a> 🐕, Pilot for fun 🛩️</h3>",
   "main": "index.js",
   "scripts": {
+    "ci": "exit 0;",
     "start": "npm install && http-server -a 0.0.0.0 -p $PORT -d false ./html",
     "local": "npm install && http-server -a 0.0.0.0 -p 8080 -d false ./html",
     "test": "echo \"Error: no test specified\" && exit 1"
