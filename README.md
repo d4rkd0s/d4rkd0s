@@ -6,7 +6,7 @@
 
 - 🔭 I’m currently working at [Curantis Solutions](https://curantissolutions.com/)
 
-- 🦩 I own/operate [Mingos.gg](https://www.mingos.gg/)
+- 🦩 I own/operate the online gaming community [Mingos.gg](https://www.mingos.gg/)
 
 - 🌱 I’m currently learning <a href="https://partner.steamgames.com/doc/sdk/api#steam_game_servers">Steamworks SDK</a> and developing games in <a href="https://godotengine.org/">Godot</a>. 
 
