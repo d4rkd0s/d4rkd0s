@@ -1,4 +1,4 @@
-<h1 align="center">Hi 👋, I'm @d4rkd0s (Logan Schmidt)</h1>
+<h1 align="center">Hi 👋, I'm @d4rkd0s (Logan Schmidt) [林和正]</h1>
 
 <h3 align="center">DevOps / Cloud Ops ☁️ Husband to <a href="https://linktr.ee/m3gm3g">@m3gm3g</a> 💕 Dad of <a href="http://frrbee.com/">@frrbee</a> 🐕 Game Developer 🎮 Pilot 🛩️</h3>
 
