@@ -11,3 +11,9 @@
 - Web3 / Crypto - My ETH Address is: **d4rkd0s.eth**
 
 - 📫 Contact me via <a href="mailto:d4rkd0s@gmail.com">d4rkd0s@gmail.com</a>
+
+Personal life:
+A Practicing Ngyingma School Vajrayana Buddhist Monk
+My Chinese name is 林和正 (Lín Hézhèng) Mr.Lin, (the one who is) harmonious and upright.
+Co-founder of Buddha Wisdom - https://www.buddhawisdom.org/
+May all be loved, may all find peace, may useful software find everyones hearts! ❤️ 
