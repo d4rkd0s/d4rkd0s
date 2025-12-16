@@ -113,6 +113,50 @@
         .github:link, .github:visited, .github:hover, .github:active { color:#999; text-decoration: none; }
         .mingos:link, .mingos:visited, .mingos:hover, .mingos:active { color:#ff7ab3; text-decoration: none; }
         .facebook:link, .facebook:visited, .facebook:hover, .facebook:active { color:#4267B2; text-decoration: none; }
+        .steam:link, .steam:visited, .steam:hover, .steam:active { color:#1b2838; text-decoration: none; }
+        .openweb:link, .openweb:visited, .openweb:hover, .openweb:active { color:#66D9EF; text-decoration: none; }
+        .main-layout {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .side-column {
+            min-width: 200px;
+            flex: 0 0 200px;
+        }
+        .center-content {
+            flex: 1;
+            max-width: 600px;
+        }
+        .side-column h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 8px;
+        }
+        .side-column ul {
+            list-style: none;
+            padding: 0;
+            font-size: 20px;
+            line-height: 1.8;
+        }
+        .side-column ul li {
+            margin-bottom: 8px;
+        }
+        @media (max-width: 900px) {
+            .main-layout {
+                flex-direction: column;
+                align-items: center;
+            }
+            .side-column {
+                width: 100%;
+                max-width: 600px;
+            }
+        }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4B3DRBE2S"></script>
@@ -130,13 +174,34 @@
         <img src="/logo.png" id="logo" alt="d4rkd0s" class="wobble"/>
         <h1><img src="/d4rkd0s-avatar-2021-nobg.png" id="avatar">Hi 👋 I'm Logan Schmidt</h1>
         <br>
-        <p>
-            I code on <a href="https://github.com/d4rkd0s" target="_blank" class="github">github.com/d4rkd0s</a><br>
-	    I post updates on <a href="https://diamondapp.com/u/d4rkd0s" target="_blank" class="twitter">$DeSo@d4rkd0s</a><br>
-            <img src="eth.png" id="eth_icon"> Ethereum Address: <b>d4rkd0s.eth</b><br>
-	    <img src="sol.png" id="sol_icon"> Solana Address: <b>d4rkd0s.sol</b><br>
-            Contact me via <a href="mailto:d4rkd0s@gmail.com" target="_blank" class="mingos">d4rkd0s@gmail.com</a><br>
-        </p>
+
+        <div class="main-layout">
+            <div class="side-column">
+                <h2>Games</h2>
+                <ul>
+                    <li><a href="https://store.steampowered.com/app/941640/Gundy/" target="_blank" class="steam">Gundy</a></li>
+                    <li><a href="https://store.steampowered.com/app/960070/" target="_blank" class="steam">Fish & Bubbles</a></li>
+                </ul>
+            </div>
+
+            <div class="center-content">
+                <p>
+                    I code on <a href="https://github.com/d4rkd0s" target="_blank" class="github">github.com/d4rkd0s</a><br>
+                    I post updates on <a href="https://diamondapp.com/u/d4rkd0s" target="_blank" class="twitter">$DeSo@d4rkd0s</a><br>
+                    <img src="eth.png" id="eth_icon"> Ethereum Address: <b>d4rkd0s.eth</b><br>
+                    <img src="sol.png" id="sol_icon"> Solana Address: <b>d4rkd0s.sol</b><br>
+                    Contact me via <a href="mailto:d4rkd0s@gmail.com" target="_blank" class="mingos">d4rkd0s@gmail.com</a><br>
+                </p>
+            </div>
+
+            <div class="side-column">
+                <h2>Open Web</h2>
+                <ul>
+                    <li><a href="http://open80.net" target="_blank" class="openweb">open80.net</a></li>
+                    <li><a href="http://terminal.gallery" target="_blank" class="openweb">terminal.gallery</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 </html>
