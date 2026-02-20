@@ -18,9 +18,15 @@
 -----
 
 **HAM Radio On-air Equipment, KE9BAN.**
+
 Typically on 40m and 20m but sometimes 2m
+
 Kenwood TS-120S CW/SSB Transceiver
+
 Kenwood PS30 amp Power Supply
+
 50 ohm feedline with ferrite choke
+
 40m Dipole cat5e & 20m Dipole cat6 with 1:1 balun
+
 BF-F8HP w/ 42.5" whip VHF/UHF
