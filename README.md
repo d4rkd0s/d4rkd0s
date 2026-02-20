@@ -13,3 +13,14 @@
     - My second game <a href="https://www.d4rkd0s.com/fishandbubbles/">Fish & Bubbles</a> is <a href="https://store.steampowered.com/app/960070/Fish__Bubbles/">available on Steam<a> for **$4.99**!
 
 - 📫 Contact me via <a href="mailto:logan@logys.space">logan@logys.space</a>
+
+
+-----
+
+**HAM Radio On-air Equipment, KE9BAN.**
+Typically on 40m and 20m but sometimes 2m
+Kenwood TS-120S CW/SSB Transceiver
+Kenwood PS30 amp Power Supply
+50 ohm feedline with ferrite choke
+40m Dipole cat5e & 20m Dipole cat6 with 1:1 balun
+BF-F8HP w/ 42.5" whip VHF/UHF
