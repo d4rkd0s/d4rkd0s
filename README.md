@@ -1,6 +1,8 @@
-<h1 align="center">Hi 👋, I'm Logan Schmidt</h1>
+<h1>Hi 👋, I'm Logan Schmidt</h1>
 
-<h3 align="center">DevOps / Cloud Ops for work ☁️ Husband to <a href="https://linktr.ee/m3gm3g">@m3gm3g</a> 💕 Dad of <a href="http://frrbee.com/">@frrbee</a> 🐕 Game Developer 🎮 Pilot 🛩️</h3>
+<h3>Lead Automation & Cloud Ops Engineer for work ☁️ </h3>
+
+<h4>Husband to <a href="https://linktr.ee/m3gm3g">@m3gm3g</a> 💕 Dad of <a href="http://frrbee.com/">@frrbee</a> 🐕 Game Developer 🎮 Pilot 🛩️</h4>
 
 - I am a HAM, and love QRP and hacking the air with crystals and electricity, https://www.qrz.com/db/KE9BAN
 
