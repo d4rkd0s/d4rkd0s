@@ -30,3 +30,8 @@ Kenwood PS30 amp Power Supply
 40m Dipole cat5e & 20m Dipole cat6 with 1:1 balun
 
 BF-F8HP w/ 42.5" whip VHF/UHF
+
+
+-----
+
+Contact me at logan@logys.space for any queries
