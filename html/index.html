@@ -20,15 +20,16 @@
             -moz-box-shadow:    inset 0 0 2px #222;
             -webkit-box-shadow: inset 0 0 2px #222;
             box-shadow:         inset 0 0 2px #222;
-            background: #222;
+            background: #000;
             font-family: 'Georama', sans-serif;
             color: white;
         }
         body {
-            overflow: hidden;
+            overflow-y: auto;
             margin: 0;
             padding: 0;
-            background: #222;
+            background: #000;
+            background-color: black;
             color: white;
             display: block;
             margin-left: auto;
@@ -40,6 +41,37 @@
      -moz-user-select: -moz-none;
       -ms-user-select: none;
           user-select: none;
+        }
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        #vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, transparent 25%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.92) 100%);
+        }
+        #bokeh-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .bokeh-circle {
+            position: absolute;
+            border-radius: 50%;
         }
         @keyframes float {
             0% {
@@ -79,24 +111,6 @@
             right: 24px;
         }
         #minogs_icon {
-            height: 40px;
-            width: 40px;
-            position: relative;
-            right: 2px;
-            top: 6px;
-            margin: 2px;
-            transform: scale(0.9)
-        }
-	#eth_icon {
-            height: 40px;
-            width: 40px;
-            position: relative;
-            right: 2px;
-            top: 6px;
-            margin: 2px;
-            transform: scale(0.9)
-        }
-	#sol_icon {
             height: 40px;
             width: 40px;
             position: relative;
@@ -169,7 +183,19 @@
     </script>
 </head>
 <body style="background-color: black;">
-    <div>
+    <canvas id="matrix-canvas"></canvas>
+    <div id="vignette"></div>
+    <div id="bokeh-layer">
+        <div class="bokeh-circle" style="width:180px;height:180px;top:8%;left:12%;background:rgba(255,255,255,1);filter:blur(60px);opacity:0.07;"></div>
+        <div class="bokeh-circle" style="width:120px;height:120px;top:65%;left:6%;background:rgba(200,200,200,1);filter:blur(50px);opacity:0.05;"></div>
+        <div class="bokeh-circle" style="width:220px;height:220px;top:20%;left:78%;background:rgba(255,255,255,1);filter:blur(80px);opacity:0.06;"></div>
+        <div class="bokeh-circle" style="width:100px;height:100px;top:80%;left:85%;background:rgba(180,180,180,1);filter:blur(40px);opacity:0.08;"></div>
+        <div class="bokeh-circle" style="width:160px;height:160px;top:50%;left:48%;background:rgba(255,255,255,1);filter:blur(70px);opacity:0.04;"></div>
+        <div class="bokeh-circle" style="width:140px;height:140px;top:5%;left:55%;background:rgba(220,220,220,1);filter:blur(55px);opacity:0.06;"></div>
+        <div class="bokeh-circle" style="width:90px;height:90px;top:88%;left:38%;background:rgba(255,255,255,1);filter:blur(45px);opacity:0.10;"></div>
+        <div class="bokeh-circle" style="width:200px;height:200px;top:40%;left:22%;background:rgba(160,160,160,1);filter:blur(75px);opacity:0.05;"></div>
+    </div>
+    <div style="position: relative; z-index: 10;">
         <p>&NonBreakingSpace;</p>
         <img src="/logo.png" id="logo" alt="d4rkd0s" class="wobble"/>
         <h1><img src="/d4rkd0s-avatar-2021-nobg.png" id="avatar">Hi 👋 I'm Logan Schmidt</h1>
@@ -188,9 +214,7 @@
                 <p>
                     I code on <a href="https://github.com/d4rkd0s" target="_blank" class="github">github.com/d4rkd0s</a><br>
                     I post updates on <a href="https://diamondapp.com/u/d4rkd0s" target="_blank" class="twitter">$DeSo@d4rkd0s</a><br>
-                    <img src="eth.png" id="eth_icon"> Ethereum Address: <b>d4rkd0s.eth</b><br>
-                    <img src="sol.png" id="sol_icon"> Solana Address: <b>d4rkd0s.sol</b><br>
-                    Contact me via <a href="mailto:d4rkd0s@gmail.com" target="_blank" class="mingos">d4rkd0s@gmail.com</a><br>
+                    Contact me via <a href="https://logys.space" target="_blank" class="mingos">logys.space</a><br>
                 </p>
             </div>
 
@@ -203,5 +227,90 @@
             </div>
         </div>
     </div>
+
+    <script>
+    (function () {
+        var canvas = document.getElementById('matrix-canvas');
+        var ctx = canvas.getContext('2d');
+
+        var CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン' +
+                    'ァィゥェォッャュョ0123456789!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+
+        var fontSize = 14;
+        var columns = 0;
+        var drops = [];
+
+        function resize() {
+            canvas.width  = window.innerWidth;
+            canvas.height = window.innerHeight;
+            columns = Math.floor(canvas.width / fontSize);
+            drops = [];
+            for (var i = 0; i < columns; i++) {
+                drops[i] = Math.random() * -canvas.height / fontSize;
+            }
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Per-column speed (1–3 px/frame expressed as fraction of a cell)
+        var speeds = [];
+        var fractional = [];
+        for (var i = 0; i < 2000; i++) {
+            speeds[i]     = 1 + Math.random() * 2;   // 1–3
+            fractional[i] = 0;
+        }
+
+        // Gray shades for trail — from light (#ccc) to dark (#444)
+        // We'll pick shade based on distance behind the head
+        var trailLength = 20; // cells before fully dark
+
+        function shade(distFromHead) {
+            // distFromHead 0 = just behind head (lightest), trailLength = darkest
+            var t = Math.min(distFromHead / trailLength, 1);
+            // Interpolate lightness: 204 (#cc) → 68 (#44)
+            var v = Math.round(204 - t * (204 - 68));
+            // Opacity also fades
+            var alpha = 1 - t * 0.6;
+            return 'rgba(' + v + ',' + v + ',' + v + ',' + alpha + ')';
+        }
+
+        function draw() {
+            // Fade the whole canvas with a translucent black overlay — creates the trail
+            ctx.fillStyle = 'rgba(0,0,0,0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = fontSize + 'px monospace';
+
+            for (var i = 0; i < columns; i++) {
+                // Advance fractional position
+                fractional[i] = (fractional[i] || 0) + speeds[i];
+                var steps = Math.floor(fractional[i] / fontSize);
+                if (steps > 0) {
+                    drops[i]      += steps;
+                    fractional[i] -= steps * fontSize;
+                }
+
+                var headY = Math.floor(drops[i]);
+
+                // Draw leading character — bright white
+                if (headY >= 0 && headY * fontSize < canvas.height) {
+                    var ch = CHARS[Math.floor(Math.random() * CHARS.length)];
+                    ctx.fillStyle = 'rgba(255,255,255,1)';
+                    ctx.fillText(ch, i * fontSize, headY * fontSize);
+                }
+
+                // Reset when column has scrolled fully off screen
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = Math.floor(Math.random() * -20);
+                }
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        requestAnimationFrame(draw);
+    })();
+    </script>
 </body>
 </html>
