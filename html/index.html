@@ -172,102 +172,112 @@
             }
         }
 
-        /* ── Donation Widget ── */
-        .donate-section {
-            background: rgba(0,0,0,0.75);
+        /* ── Donate strip ── */
+        .donate-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 36px;
+            margin-bottom: 20px;
+            opacity: 0.45;
+            transition: opacity 0.3s;
+        }
+        .donate-strip:hover { opacity: 0.85; }
+        .donate-strip-label {
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #666;
+            user-select: none;
+        }
+        .coin-btn {
+            background: none;
+            border: 1px solid #333;
+            color: #aaa;
+            font-size: 18px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+            padding: 0;
+            line-height: 1;
+        }
+        .coin-btn:hover {
+            border-color: #888;
+            color: #fff;
+            background: rgba(255,255,255,0.05);
+        }
+        /* popup */
+        .donate-popup {
+            display: none;
+            position: fixed;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10,10,10,0.97);
             border: 1px solid #333;
             border-radius: 8px;
-            padding: 30px;
-            text-align: left;
+            padding: 14px 18px;
+            z-index: 100;
+            text-align: center;
+            min-width: 280px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.7);
         }
-        .donate-section h2 {
-            font-size: 28px;
-            margin-top: 0;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #444;
-            padding-bottom: 8px;
+        .donate-popup.open { display: block; }
+        .popup-chain {
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #666;
+            margin: 0 0 6px 0;
         }
-        .donate-cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .donate-card {
-            flex: 1;
-            min-width: 260px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid #2a2a2a;
-            border-radius: 6px;
-            padding: 20px;
-            text-align: left;
-        }
-        .donate-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 18px;
-            color: #fff;
-        }
-        .donate-ens {
-            font-size: 20px;
-            color: #fff;
-            margin: 0 0 4px 0;
-            word-break: break-all;
-        }
-        .donate-addr {
-            font-size: 13px;
-            color: #888;
+        .popup-addr {
             font-family: monospace;
-            margin: 0 0 16px 0;
-            cursor: default;
-            transition: color 0.2s;
-        }
-        .donate-addr:hover {
+            font-size: 12px;
             color: #ccc;
+            word-break: break-all;
+            display: block;
+            margin-bottom: 10px;
         }
-        .donate-btns {
+        .popup-actions {
             display: flex;
-            flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
-        .donate-btn {
+        .popup-btn {
             background: #111;
             border: 1px solid #444;
-            color: #fff;
-            font-family: 'Georama', sans-serif;
-            font-size: 13px;
-            padding: 6px 14px;
+            color: #ddd;
+            font-size: 12px;
+            padding: 5px 12px;
             border-radius: 4px;
             cursor: pointer;
-            transition: border-color 0.2s, color 0.2s;
+            font-family: 'Georama', sans-serif;
+            transition: border-color 0.2s;
         }
-        .donate-btn:hover {
-            border-color: #aaa;
-            color: #fff;
-        }
-        .donate-status {
-            font-size: 12px;
-            margin: 4px 0 0 0;
-            min-height: 16px;
+        .popup-btn:hover { border-color: #aaa; color: #fff; }
+        .popup-status {
+            font-size: 11px;
             font-family: monospace;
+            margin: 8px 0 0 0;
+            min-height: 14px;
         }
-        .donate-status.success { color: #6bff9e; }
-        .donate-status.error   { color: #ff6b6b; }
-        .qr-container {
-            display: inline-block;
-            margin-top: 12px;
-            background: #fff;
-            padding: 6px;
-            border-radius: 4px;
-            line-height: 0;
+        .popup-status.ok  { color: #6bff9e; }
+        .popup-status.err { color: #ff6b6b; }
+        .popup-close {
+            position: absolute;
+            top: 6px; right: 10px;
+            background: none; border: none;
+            color: #555; font-size: 16px;
+            cursor: pointer; line-height: 1;
         }
-        .qr-container.hidden {
-            display: none;
-        }
-        @media (max-width: 900px) {
-            .donate-cards {
-                flex-direction: column;
-            }
-        }
+        .popup-close:hover { color: #fff; }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/ethers@6.16.0/dist/ethers.umd.min.js"></script>
     <script src="https://unpkg.com/@solana/web3.js@1.98.4/lib/index.iife.js"></script>
@@ -326,179 +336,144 @@
                 </ul>
             </div>
 
-            <div style="width:100%; margin-top: 40px;">
-                <div class="donate-section">
-                    <h2>Support / Donate</h2>
-                    <div class="donate-cards">
+        </div>
 
-                        <!-- ETH Card -->
-                        <div class="donate-card">
-                            <h3>ETH / Ethereum</h3>
-                            <p class="donate-ens">d4rkd0s.eth</p>
-                            <p class="donate-addr" title="0xe075d7A651035FA26b9f7E93EBc57F0C03b25D1F">0xe075...D1F</p>
-                            <div class="donate-btns">
-                                <button class="donate-btn" onclick="sendEth()">Send ETH</button>
-                                <button class="donate-btn" onclick="copyAddr('0xe075d7A651035FA26b9f7E93EBc57F0C03b25D1F', 'eth-status', this)">Copy Address</button>
-                                <button class="donate-btn" id="qr-eth-btn" onclick="toggleQr('qr-eth', 'ethereum:0xe075d7A651035FA26b9f7E93EBc57F0C03b25D1F', 'qr-eth-btn')">Show QR</button>
-                            </div>
-                            <p class="donate-status" id="eth-status"></p>
-                            <div class="qr-container hidden" id="qr-eth"></div>
-                        </div>
-
-                        <!-- BTC Card -->
-                        <div class="donate-card">
-                            <h3>BTC / Bitcoin</h3>
-                            <p class="donate-addr" title="bc1qra7ga4nr056qr4kgef5ckkd4hccghnzkgqa9fn">bc1qra7...9fn</p>
-                            <div class="donate-btns">
-                                <button class="donate-btn" onclick="copyAddr('bc1qra7ga4nr056qr4kgef5ckkd4hccghnzkgqa9fn', 'btc-status', this)">Copy Address</button>
-                                <button class="donate-btn" id="qr-btc-btn" onclick="toggleQr('qr-btc', 'bitcoin:bc1qra7ga4nr056qr4kgef5ckkd4hccghnzkgqa9fn', 'qr-btc-btn')">Show QR</button>
-                            </div>
-                            <p class="donate-status" id="btc-status"></p>
-                            <div class="qr-container hidden" id="qr-btc"></div>
-                        </div>
-
-                        <!-- SOL Card -->
-                        <div class="donate-card">
-                            <h3>SOL / Solana</h3>
-                            <p class="donate-addr" title="43TL918ckXnUYhsHc1pwBLt6bLRaTBjsdCtWx1JkwzCV">43TL9...zCV</p>
-                            <div class="donate-btns">
-                                <button class="donate-btn" onclick="sendSol()">Send SOL</button>
-                                <button class="donate-btn" onclick="copyAddr('43TL918ckXnUYhsHc1pwBLt6bLRaTBjsdCtWx1JkwzCV', 'sol-status', this)">Copy Address</button>
-                                <button class="donate-btn" id="qr-sol-btn" onclick="toggleQr('qr-sol', 'solana:43TL918ckXnUYhsHc1pwBLt6bLRaTBjsdCtWx1JkwzCV', 'qr-sol-btn')">Show QR</button>
-                            </div>
-                            <p class="donate-status" id="sol-status"></p>
-                            <div class="qr-container hidden" id="qr-sol"></div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+        <!-- Donate strip -->
+        <div class="donate-strip">
+            <span class="donate-strip-label">donate</span>
+            <button class="coin-btn" title="Ethereum" onclick="openPopup('eth')">Ξ</button>
+            <button class="coin-btn" title="Bitcoin"  onclick="openPopup('btc')">₿</button>
+            <button class="coin-btn" title="Solana"   onclick="openPopup('sol')">◎</button>
         </div>
     </div>
 
+    <!-- Donate popup -->
+    <div class="donate-popup" id="donate-popup">
+        <button class="popup-close" onclick="closePopup()">✕</button>
+        <p class="popup-chain" id="popup-chain"></p>
+        <span class="popup-addr" id="popup-addr"></span>
+        <div class="popup-actions" id="popup-actions"></div>
+        <p class="popup-status" id="popup-status"></p>
+    </div>
+
     <script>
-    /* ── Donation Widget JS ── */
+    /* ── Donate popup JS ── */
+    var CHAINS = {
+        eth: { label: 'ETH / Ethereum',  addr: '0xe075d7A651035FA26b9f7E93EBc57F0C03b25D1F', uri: 'ethereum:0xe075d7A651035FA26b9f7E93EBc57F0C03b25D1F', send: 'sendEth' },
+        btc: { label: 'BTC / Bitcoin',   addr: 'bc1qra7ga4nr056qr4kgef5ckkd4hccghnzkgqa9fn', uri: 'bitcoin:bc1qra7ga4nr056qr4kgef5ckkd4hccghnzkgqa9fn', send: null },
+        sol: { label: 'SOL / Solana',    addr: '43TL918ckXnUYhsHc1pwBLt6bLRaTBjsdCtWx1JkwzCV', uri: 'solana:43TL918ckXnUYhsHc1pwBLt6bLRaTBjsdCtWx1JkwzCV', send: 'sendSol' }
+    };
+    var activeChain = null;
+    var qrDone = {};
 
-    var ETH_ADDR = '0xe075d7A651035FA26b9f7E93EBc57F0C03b25D1F';
-    var BTC_ADDR = 'bc1qra7ga4nr056qr4kgef5ckkd4hccghnzkgqa9fn';
-    var SOL_ADDR = '43TL918ckXnUYhsHc1pwBLt6bLRaTBjsdCtWx1JkwzCV';
-
-    var qrGenerated = {};
-
-    function setStatus(id, msg, type) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        el.textContent = msg;
-        el.className = 'donate-status ' + (type || '');
-        if (msg) {
-            setTimeout(function() {
-                el.textContent = '';
-                el.className = 'donate-status';
-            }, 5000);
+    function openPopup(chain) {
+        if (activeChain === chain && document.getElementById('donate-popup').classList.contains('open')) {
+            closePopup(); return;
         }
-    }
+        activeChain = chain;
+        var c = CHAINS[chain];
+        document.getElementById('popup-chain').textContent = c.label;
+        document.getElementById('popup-addr').textContent = c.addr;
+        document.getElementById('popup-status').textContent = '';
+        document.getElementById('popup-status').className = 'popup-status';
 
-    function copyAddr(addr, statusId, btn) {
-        var origText = btn.textContent;
-        navigator.clipboard.writeText(addr).then(function() {
-            btn.textContent = 'Copied!';
-            setTimeout(function() { btn.textContent = origText; }, 2000);
-            setStatus(statusId, 'Address copied to clipboard.', 'success');
-        }).catch(function() {
-            setStatus(statusId, 'Copy failed — please copy manually.', 'error');
-        });
-    }
+        var actions = document.getElementById('popup-actions');
+        actions.innerHTML = '';
 
-    function toggleQr(containerId, uri, btnId) {
-        var container = document.getElementById(containerId);
-        var btn = document.getElementById(btnId);
-        if (!container || !btn) return;
+        // Copy button
+        var copyBtn = document.createElement('button');
+        copyBtn.className = 'popup-btn';
+        copyBtn.textContent = 'Copy';
+        copyBtn.onclick = function() {
+            navigator.clipboard.writeText(c.addr).then(function() {
+                copyBtn.textContent = 'Copied!';
+                setTimeout(function() { copyBtn.textContent = 'Copy'; }, 2000);
+            });
+        };
+        actions.appendChild(copyBtn);
 
-        var isHidden = container.classList.contains('hidden');
-
-        if (isHidden) {
-            // Generate QR lazily on first open
-            if (!qrGenerated[containerId]) {
-                new QRCode(container, {
-                    text: uri,
-                    width: 160,
-                    height: 160,
-                    colorDark: '#000000',
-                    colorLight: '#ffffff'
-                });
-                container.setAttribute('data-generated', 'true');
-                qrGenerated[containerId] = true;
+        // QR button
+        var qrBtn = document.createElement('button');
+        qrBtn.className = 'popup-btn';
+        qrBtn.textContent = 'QR';
+        var qrBox = document.createElement('div');
+        qrBox.style.cssText = 'display:none;margin-top:10px;background:#fff;padding:6px;border-radius:4px;line-height:0;';
+        document.getElementById('popup-actions').after(qrBox);
+        qrBtn.onclick = function() {
+            if (qrBox.style.display === 'none') {
+                if (!qrDone[chain]) {
+                    new QRCode(qrBox, { text: c.uri, width: 150, height: 150, colorDark: '#000', colorLight: '#fff' });
+                    qrDone[chain] = true;
+                }
+                qrBox.style.display = 'inline-block';
+                qrBtn.textContent = 'Hide QR';
+            } else {
+                qrBox.style.display = 'none';
+                qrBtn.textContent = 'QR';
             }
-            container.classList.remove('hidden');
-            btn.textContent = 'Hide QR';
-        } else {
-            container.classList.add('hidden');
-            btn.textContent = 'Show QR';
+        };
+        actions.appendChild(qrBtn);
+
+        // Send button (ETH/SOL only)
+        if (c.send) {
+            var sendBtn = document.createElement('button');
+            sendBtn.className = 'popup-btn';
+            sendBtn.textContent = 'Send';
+            sendBtn.onclick = window[c.send];
+            actions.appendChild(sendBtn);
         }
+
+        document.getElementById('donate-popup').classList.add('open');
+    }
+
+    function closePopup() {
+        document.getElementById('donate-popup').classList.remove('open');
+        activeChain = null;
+    }
+
+    document.addEventListener('click', function(e) {
+        var popup = document.getElementById('donate-popup');
+        if (!popup.contains(e.target) && !e.target.classList.contains('coin-btn')) closePopup();
+    });
+
+    function setPopupStatus(msg, type) {
+        var el = document.getElementById('popup-status');
+        el.textContent = msg;
+        el.className = 'popup-status' + (type ? ' ' + type : '');
+        if (msg) setTimeout(function() { el.textContent = ''; el.className = 'popup-status'; }, 5000);
     }
 
     async function sendEth() {
-        if (!window.ethereum) {
-            alert('Install MetaMask to send ETH directly.');
-            return;
-        }
-        var statusId = 'eth-status';
+        if (!window.ethereum) { alert('Install MetaMask to send ETH.'); return; }
         try {
             var accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
             var amountStr = prompt('Amount in ETH:');
             if (!amountStr) return;
             var amount = parseFloat(amountStr);
-            if (isNaN(amount) || amount <= 0) {
-                setStatus(statusId, 'Invalid amount.', 'error');
-                return;
-            }
-            setStatus(statusId, 'Waiting for wallet confirmation...', '');
-            var txHash = await window.ethereum.request({
-                method: 'eth_sendTransaction',
-                params: [{
-                    from: accounts[0],
-                    to: ETH_ADDR,
-                    value: ethers.toBeHex(ethers.parseEther(amountStr.trim()))
-                }]
-            });
-            setStatus(statusId, 'Sent! TX: ' + txHash.slice(0, 12) + '...', 'success');
-        } catch (err) {
-            setStatus(statusId, 'Error: ' + (err.message || err), 'error');
-        }
+            if (isNaN(amount) || amount <= 0) { setPopupStatus('Invalid amount.', 'err'); return; }
+            setPopupStatus('Waiting for wallet...', '');
+            var tx = await window.ethereum.request({ method: 'eth_sendTransaction', params: [{ from: accounts[0], to: CHAINS.eth.addr, value: ethers.toBeHex(ethers.parseEther(amountStr.trim())) }] });
+            setPopupStatus('Sent! ' + tx.slice(0,10) + '…', 'ok');
+        } catch(e) { setPopupStatus(e.message || 'Error', 'err'); }
     }
 
     async function sendSol() {
-        var statusId = 'sol-status';
-        if (!window.solana || !window.solana.isPhantom) {
-            alert('Install Phantom wallet to send SOL directly.');
-            return;
-        }
+        if (!window.solana?.isPhantom) { alert('Install Phantom to send SOL.'); return; }
         try {
             await window.solana.connect();
             var amountStr = prompt('Amount in SOL:');
             if (!amountStr) return;
             var amount = parseFloat(amountStr);
-            if (isNaN(amount) || amount <= 0) {
-                setStatus(statusId, 'Invalid amount.', 'error');
-                return;
-            }
-            setStatus(statusId, 'Building transaction...', '');
-            var connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
-            var tx = new solanaWeb3.Transaction().add(
-                solanaWeb3.SystemProgram.transfer({
-                    fromPubkey: new solanaWeb3.PublicKey(window.solana.publicKey.toString()),
-                    toPubkey: new solanaWeb3.PublicKey(SOL_ADDR),
-                    lamports: Math.round(amount * 1e9)
-                })
-            );
-            var latestBlockhash = await connection.getLatestBlockhash();
-            tx.recentBlockhash = latestBlockhash.blockhash;
+            if (isNaN(amount) || amount <= 0) { setPopupStatus('Invalid amount.', 'err'); return; }
+            setPopupStatus('Building transaction...', '');
+            var conn = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
+            var tx = new solanaWeb3.Transaction().add(solanaWeb3.SystemProgram.transfer({ fromPubkey: new solanaWeb3.PublicKey(window.solana.publicKey.toString()), toPubkey: new solanaWeb3.PublicKey(CHAINS.sol.addr), lamports: Math.round(amount * 1e9) }));
+            var { blockhash } = await conn.getLatestBlockhash();
+            tx.recentBlockhash = blockhash;
             tx.feePayer = window.solana.publicKey;
-            var signed = await window.solana.signAndSendTransaction(tx);
-            setStatus(statusId, 'Sent! Sig: ' + signed.signature.slice(0, 12) + '...', 'success');
-        } catch (err) {
-            setStatus(statusId, 'Error: ' + (err.message || err), 'error');
-        }
+            var sig = await window.solana.signAndSendTransaction(tx);
+            setPopupStatus('Sent! ' + sig.signature.slice(0,10) + '…', 'ok');
+        } catch(e) { setPopupStatus(e.message || 'Error', 'err'); }
     }
     </script>
 
