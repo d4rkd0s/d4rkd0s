@@ -1,6 +1,6 @@
 <h1>Hi 👋, I'm Logan Schmidt</h1>
 
-<h3>Lead Automation & Cloud Ops Engineer for work ☁️ </h3>
+<h3>Enablement & Actualization / AIDevSecOps / AI & Human Co-empowerment ☁️ </h3>
 
 Website: https://logys.space/
 
